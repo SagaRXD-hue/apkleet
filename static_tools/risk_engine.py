@@ -38,9 +38,13 @@ def calculate_risk(results):
         extract_from_list(results[key])
 
 
-    # Cap score at 100
-    if total > 100:
-        total = 100
+
+    # Normalize score
+    if count > 0:
+        total = int((total / (count * 20)) * 100)
+    else:
+        total = 0
+
 
 
     # Determine risk level

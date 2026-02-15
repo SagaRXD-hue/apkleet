@@ -7,6 +7,7 @@ import argparse
 import time
 import xml.etree.ElementTree as ET
 from static_tools import sensitive_info_extractor, scan_android_manifest, crypto_checker, m10_checker, m8_checker, risk_engine
+from static_tools import m7_checker, m4_m6_checker
 
 from static_tools.reverse_engineering import ReverseEngineeringDetector
 
@@ -280,7 +281,10 @@ if __name__ == "__main__":
             "weak_crypto": "",
             "extraneous_functionality": [],
             "code_tampering": [],
-            "reverse_engineering": []
+            "reverse_engineering": [],
+            "client_code_quality": [],
+            "auth_issues": [],
+            "authorization_issues": []
 
         }
 
@@ -352,10 +356,12 @@ if __name__ == "__main__":
             results_dict["hardcoded_secrets"] = []
 
         # extracting insecure connections
+        source_code_dir = os.path.join(extracted_apk_path, "sources")
+
+
         # M8: Code Tampering Detection
         util.mod_log("[+] Scanning for anti-tampering protection (M8)", util.OKCYAN)
 
-        source_code_dir = os.path.join(extracted_apk_path, "sources")
 
         m8_results = m8_checker.scan_m8(source_code_dir)
 
@@ -377,6 +383,39 @@ if __name__ == "__main__":
             results_dict["reverse_engineering"] = rev_results
         else:
             results_dict["reverse_engineering"] = []
+
+        # M7: Client Code Quality
+        util.mod_log("[+] Scanning for client code quality issues (M7)", util.OKCYAN)
+
+        m7_results = m7_checker.scan_m7(source_code_dir)
+
+        if isinstance(m7_results, list):
+            results_dict["client_code_quality"] = m7_results
+        else:
+            results_dict["client_code_quality"] = []
+
+        # M4 & M6: Authentication & Authorization
+        util.mod_log("[+] Scanning for auth and authorization issues (M4/M6)", util.OKCYAN)
+
+        m4_m6_results = m4_m6_checker.scan_m4_m6(source_code_dir)
+
+
+        auth_list = []
+        access_list = []
+
+
+        for item in m4_m6_results:
+
+            if item["owasp"].startswith("M4"):
+                auth_list.append(item)
+
+            elif item["owasp"].startswith("M6"):
+                access_list.append(item)
+
+
+        results_dict["auth_issues"] = auth_list
+        results_dict["authorization_issues"] = access_list
+
 
         # M10: Extraneous Functionality Detection
         util.mod_log("[+] Scanning for extraneous functionality (M10)", util.OKCYAN)
