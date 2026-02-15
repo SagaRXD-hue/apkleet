@@ -6,27 +6,14 @@ SEVERITY_SCORES = {
 }
 
 
-SEVERITY_SCORES = {
-    "Critical": 15,
-    "High": 8,
-    "Medium": 4,
-    "Low": 1
-}
-
-CONFIDENCE_MULTIPLIER = {
-    "High": 1.0,
-    "Medium": 0.6,
-    "Low": 0.3
-}
-
-
 def calculate_risk(results):
 
     total = 0
     count = 0
 
 
-    def extract(data):
+    def extract_from_list(data):
+
         nonlocal total, count
 
         if not isinstance(data, list):
@@ -40,35 +27,47 @@ def calculate_risk(results):
             severity = item.get("severity", "Low")
             confidence = item.get("confidence", "Low")
 
-            base = SEVERITY_SCORES.get(severity, 1)
-            mult = CONFIDENCE_MULTIPLIER.get(confidence, 0.3)
+            base_score = SEVERITY_SCORES.get(severity, 2)
 
-            score = base * mult
+            # Confidence multipliers:
+            MULT = {"High": 1.0, "Medium": 0.6, "Low": 0.3}
+
+            score = base_score * MULT.get(confidence, 0.3)
+
 
             total += score
             count += 1
 
 
-    for key in results:
-        extract(results[key])
+    # Scan all sections
+    for key, value in results.items():
+        if isinstance(value, list):
+            extract_from_list(value)
 
 
-    if total > 100:
-        total = 100
 
 
-    if total >= 70:
+    # Normalize score
+    if count > 0:
+        total = int((total / (count * 20)) * 100)
+    else:
+        total = 0
+
+
+
+    # Determine risk level
+    if total >= 80:
         level = "Critical"
-    elif total >= 45:
+    elif total >= 60:
         level = "High"
-    elif total >= 20:
+    elif total >= 30:
         level = "Medium"
     else:
         level = "Low"
 
 
     return {
-        "score": round(total, 2),
+        "score": total,
         "level": level,
         "issues_found": count
     }

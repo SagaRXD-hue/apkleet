@@ -59,6 +59,7 @@ def scan_m3(source_dir):
                         findings.append({
                             "title": "Insecure Communication",
                             "severity": "High",
+                            "confidence": "High",
                             "owasp": "M3: Insecure Communication",
                             "path": os.path.relpath(file_path, source_dir),
                             "description": f"Insecure protocol detected: {match}",

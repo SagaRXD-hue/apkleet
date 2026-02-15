@@ -14,8 +14,16 @@ IGNORE_PACKAGES = [
 ]
 
 
-def should_ignore(path: str) -> bool:
-    
-    path = path.replace("\\", "/").lower()
+def normalize_path(path: str) -> str:
+    return path.replace("\\", "/").lower()
 
-    return any(pkg in path for pkg in IGNORE_PACKAGES)
+
+def should_ignore(path: str) -> bool:
+
+    normalized = normalize_path(path)
+
+    for pkg in IGNORE_PACKAGES:
+        if pkg in normalized:
+            return True
+
+    return False   # ✅ IMPORTANT

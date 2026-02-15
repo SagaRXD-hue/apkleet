@@ -55,7 +55,8 @@ def scan_m10(source_dir, manifest_path):
 
             findings.append({
                 "title": "Debug Mode Enabled",
-                "severity": "High",
+                "severity": "Medium",
+                "confidence": "Medium",
                 "owasp": "M10: Extraneous Functionality",
                 "path": "AndroidManifest.xml",
                 "description": "Application is debuggable in production",

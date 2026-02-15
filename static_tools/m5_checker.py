@@ -82,6 +82,7 @@ def scan_crypto(source_dir):
                     findings.append({
                         "title": "Weak Cryptography",
                         "severity": "High" if algo == "MD5" or algo == "ECB" else "Medium",
+                        "confidence": "Mdeium",
                         "owasp": "M5: Insufficient Cryptography",
                         "path": path,
                         "description": f"Insecure crypto algorithm detected: {algo}",

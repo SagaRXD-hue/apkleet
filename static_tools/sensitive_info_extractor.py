@@ -77,6 +77,7 @@ class SensitiveInfoExtractor(object):
                         secret_info = {
                             "title": "Hardcoded Secret",
                             "severity": "High",
+                            "confidence": "High",
                             "owasp": "M2: Insecure Data Storage",
                             "path": real_relative_path,
                             "description": f"Hardcoded sensitive value: {ioc_and_type[0]}",

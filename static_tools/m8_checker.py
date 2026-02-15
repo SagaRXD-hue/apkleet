@@ -51,7 +51,7 @@ def scan_m8(source_dir):
         for file in files:
             if should_ignore(file):
                 continue
-                
+
             if not (file.endswith(".java") or file.endswith(".kt")):
                 continue
 
@@ -87,7 +87,8 @@ def scan_m8(source_dir):
 
         findings.append({
             "title": "Missing Anti-Tampering Protection",
-            "severity": "Medium",
+            "severity": "Low",
+            "confidence": "Low",
             "owasp": "M8: Code Tampering",
             "path": path,
             "description": "No anti-debug/root/tamper protection detected",

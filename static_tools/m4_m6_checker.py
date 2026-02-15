@@ -58,6 +58,7 @@ def scan_m4_m6(source_dir):
                         findings.append({
                             "title": "Weak Authentication Implementation",
                             "severity": "High",
+                            "confidence": "High",
                             "owasp": "M4: Insecure Authentication",
                             "path": os.path.relpath(path, source_dir),
                             "description": f"Authentication weakness detected ({key})",
