@@ -1,0 +1,852 @@
+{
+    "apk_name": "zarch.apk",
+    "risk_score": 12,
+    "risk_level": "Low",
+    "total_issues": 96,
+    "package_name": "ru.zdevs.zarchiver",
+    "permission": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.WRITE_MEDIA_STORAGE",
+        "android.permission.WAKE_LOCK",
+        "android.permission.ACCESS_SUPERUSER",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
+        "ru.zdevs.zarchiver.permission.PLUGIN.CLOUD",
+        "ru.zdevs.zarchiver.permission.PLUGIN.USB",
+        "moe.shizuku.manager.permission.API_V23"
+    ],
+    "dangerous_permission": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+    ],
+    "manifest_analysis": {
+        "activities": {
+            "all": [
+                "ru.zdevs.zarchiver.ZArchiver",
+                "ru.zdevs.zarchiver.activity.SettingsDlg",
+                "ru.zdevs.zarchiver.activity.AboutDlg",
+                "ru.zdevs.zarchiver.activity.OpenAsDlg",
+                "ru.zdevs.zarchiver.activity.InstallApkDlg",
+                "ru.zdevs.zarchiver.ZSelectFile",
+                "ru.zdevs.zarchiver.activity.ExtractDlg",
+                "ru.zdevs.zarchiver.activity.InstallApksDlg",
+                "ru.zdevs.zarchiver.ZImageViewer",
+                "ru.zdevs.zarchiver.ZTextEditor"
+            ],
+            "exported": [
+                "ru.zdevs.zarchiver.ZArchiver",
+                "ru.zdevs.zarchiver.ZSelectFile",
+                "ru.zdevs.zarchiver.activity.ExtractDlg",
+                "ru.zdevs.zarchiver.activity.InstallApksDlg",
+                "ru.zdevs.zarchiver.ZImageViewer",
+                "ru.zdevs.zarchiver.ZTextEditor"
+            ]
+        },
+        "services": {
+            "all": [
+                "ru.zdevs.zarchiver.service.ZArchiverService",
+                "ru.zdevs.zarchiver.service.ZArchiverClearTemp"
+            ],
+            "exported": []
+        },
+        "receivers": {
+            "all": [],
+            "exported": []
+        },
+        "providers": {
+            "all": [
+                "ru.zdevs.zarchiver.provider.FileProvider",
+                "ru.zdevs.zarchiver.provider.ArchiveFileProvider",
+                "ru.zdevs.zarchiver.provider.PluginFileProvider",
+                "rikka.shizuku.ShizukuProvider"
+            ],
+            "exported": [
+                "rikka.shizuku.ShizukuProvider"
+            ]
+        }
+    },
+    "hardcoded_secrets": [],
+    "weak_crypto": [],
+    "extraneous_functionality": [],
+    "code_tampering": [
+        {
+            "title": "Missing Anti-Tampering Protection",
+            "severity": "Medium",
+            "owasp": "M8: Code Tampering",
+            "path": "D:\\analyzer\\APKDeepLens\\app_source\\zarch.apk\\sources\\z0\\j.java",
+            "description": "No anti-debug/root/tamper protection detected",
+            "remediation": "Implement root, debugger, and integrity checks"
+        }
+    ],
+    "reverse_engineering": [
+        {
+            "title": "Missing Reverse Engineering Protection",
+            "severity": "Medium",
+            "owasp": "M9: Reverse Engineering",
+            "path": "N/A",
+            "description": "No anti-debugging, obfuscation, or protection detected",
+            "remediation": "Use ProGuard/R8 and anti-tampering techniques"
+        }
+    ],
+    "client_code_quality": [
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "a0\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "a0\\f.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "a0\\h0.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "a0\\k0.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "a0\\t0.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "a0\\u0.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "b\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "b0\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "c\\d.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "com\\davemorrissey\\labs\\subscaleview\\decoder\\SkiaPooledImageRegionDecoder.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "com\\sothree\\slidinguppanel\\SlidingUpPanelLayout.java",
+            "description": "Detected debug_log pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "d0\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "e0\\b.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "f1\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\a0.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\g.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\h.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\h.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\i.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\j.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\n.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\o.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\r.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\v.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\x.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "g0\\y.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "h1\\f.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "h1\\g.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "h1\\h.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "i0\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "j0\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "j0\\b.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "j0\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "j0\\g.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "k0\\b.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "l0\\c.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "l0\\e.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "m0\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "m0\\d.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "n0\\b.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "n0\\d.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "n0\\e.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "o0\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "o0\\b.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "o0\\d.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "o0\\f.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "p0\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "p0\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "p0\\d.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "q0\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "q0\\b.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "q0\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "q0\\d.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "q0\\e.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "q0\\f.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "q0\\g.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "rikka\\shizuku\\ShizukuProvider.java",
+            "description": "Detected debug_log pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\d.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ZApp.java",
+            "description": "Detected debug_log pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ZApp.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ZArchiver.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ZImageViewer.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ZSelectFile.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ZTextEditor.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\activity\\ExtractDlg.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\activity\\InstallApksDlg.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\activity\\SettingsDlg.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\archiver\\C2JBridge.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\io\\KitKatExtSD.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\io\\ZAIO.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\service\\ZArchiverService.java",
+            "description": "Detected debug_log pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ui\\editor\\EditableView.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "ru\\zdevs\\zarchiver\\ui\\text\\EditPassword.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "s0\\h.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "s0\\i.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "t0\\a.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "v0\\b.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "v0\\e.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "w0\\c.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "x0\\d.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "x0\\h.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "x0\\h.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "y0\\b.java",
+            "description": "Detected debug_log pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "y0\\c.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "z0\\c.java",
+            "description": "Detected printStackTrace pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        },
+        {
+            "title": "Poor Code Quality",
+            "severity": "Low",
+            "owasp": "M7: Client Code Quality",
+            "path": "z0\\e.java",
+            "description": "Detected empty_catch pattern in source code",
+            "remediation": "Remove debug and development code before release"
+        }
+    ],
+    "auth_issues": [],
+    "authorization_issues": [],
+    "insecure_communication": [],
+    "platform_usage": [],
+    "insecure_storage": [
+        {
+            "title": "Insecure Data Storage",
+            "severity": "High",
+            "owasp": "M2",
+            "path": "D:\\analyzer\\APKDeepLens\\app_source\\zarch.apk\\sources\\g0\\h.java",
+            "description": "Possible insecure storage: SharedPreferences",
+            "remediation": "Use EncryptedSharedPreferences"
+        },
+        {
+            "title": "Insecure Data Storage",
+            "severity": "High",
+            "owasp": "M2",
+            "path": "D:\\analyzer\\APKDeepLens\\app_source\\zarch.apk\\sources\\ru\\zdevs\\zarchiver\\activity\\SettingsDlg.java",
+            "description": "Possible insecure storage: SharedPreferences",
+            "remediation": "Use EncryptedSharedPreferences"
+        },
+        {
+            "title": "Insecure Data Storage",
+            "severity": "High",
+            "owasp": "M2",
+            "path": "D:\\analyzer\\APKDeepLens\\app_source\\zarch.apk\\sources\\ru\\zdevs\\zarchiver\\ui\\preference\\Compression7zLevelPreference.java",
+            "description": "Possible insecure storage: SharedPreferences",
+            "remediation": "Use EncryptedSharedPreferences"
+        },
+        {
+            "title": "Insecure Data Storage",
+            "severity": "High",
+            "owasp": "M2",
+            "path": "D:\\analyzer\\APKDeepLens\\app_source\\zarch.apk\\sources\\ru\\zdevs\\zarchiver\\ui\\preference\\FileSelectPreference.java",
+            "description": "Possible insecure storage: SharedPreferences",
+            "remediation": "Use EncryptedSharedPreferences"
+        },
+        {
+            "title": "Insecure Data Storage",
+            "severity": "High",
+            "owasp": "M2",
+            "path": "D:\\analyzer\\APKDeepLens\\app_source\\zarch.apk\\sources\\t0\\a.java",
+            "description": "Possible insecure storage: SharedPreferences",
+            "remediation": "Use EncryptedSharedPreferences"
+        },
+        {
+            "title": "Insecure Data Storage",
+            "severity": "High",
+            "owasp": "M2",
+            "path": "D:\\analyzer\\APKDeepLens\\app_source\\zarch.apk\\sources\\t0\\b.java",
+            "description": "Possible insecure storage: SharedPreferences",
+            "remediation": "Use EncryptedSharedPreferences"
+        }
+    ]
+}
