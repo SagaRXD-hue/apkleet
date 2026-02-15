@@ -6,11 +6,12 @@ import logging
 import argparse
 import time
 import xml.etree.ElementTree as ET
-from static_tools import sensitive_info_extractor, scan_android_manifest, crypto_checker, m10_checker, m8_checker, risk_engine
+from static_tools import  scan_android_manifest, m10_checker, m8_checker, risk_engine
+from static_tools import m5_checker as crypto_checker
+from static_tools import sensitive_info_extractor
 from static_tools import m7_checker, m4_m6_checker
-from static_tools import m1_checker, m2_checker, m4_checker, m6_checker
+from static_tools import m1_checker, m2_checker, m3_checker, m9_checker
 
-from static_tools.reverse_engineering import ReverseEngineeringDetector
 
 
 from report_gen import ReportGen, util
@@ -278,14 +279,14 @@ if __name__ == "__main__":
             "dangerous_permission": "",
             "manifest_analysis": "",
             "hardcoded_secrets": "",
-            "insecure_requests": "",
             "weak_crypto": "",
             "extraneous_functionality": [],
             "code_tampering": [],
             "reverse_engineering": [],
             "client_code_quality": [],
             "auth_issues": [],
-            "authorization_issues": []
+            "authorization_issues": [],
+            "insecure_communication": []
 
         }
 
@@ -371,17 +372,17 @@ if __name__ == "__main__":
         else:
             results_dict["code_tampering"] = []
 
-        # M9: Reverse Engineering Detection
+        # M9: Reverse Engineering Protection
         util.mod_log("[+] Scanning for reverse engineering protection (M9)", util.OKCYAN)
 
-        rev_detector = ReverseEngineeringDetector(extracted_apk_path)
-        rev_results = rev_detector.scan()
+        source_code_dir = os.path.join(extracted_apk_path, "sources")
 
-        if isinstance(rev_results, list):
-            results_dict["reverse_engineering"] = rev_results
+        m9_results = m9_checker.scan_m9(source_code_dir)
+
+        if isinstance(m9_results, list):
+            results_dict["reverse_engineering"] = m9_results
         else:
-            results_dict["reverse_engineering"] = ["No reverse engineering protections detected."]
-
+            results_dict["reverse_engineering"] = []
 
         # M7: Client Code Quality
         util.mod_log("[+] Scanning for client code quality issues (M7)", util.OKCYAN)
@@ -423,15 +424,6 @@ if __name__ == "__main__":
         util.mod_log("[+] Scanning for insecure data storage (M2)", util.OKCYAN)
         results_dict["insecure_storage"] = m2_checker.scan_m2(source_code_dir)
 
-        # M4
-        util.mod_log("[+] Scanning for authentication issues (M4)", util.OKCYAN)
-        results_dict["auth_issues"] = m4_checker.scan_m4(source_code_dir)
-
-        # M6
-        util.mod_log("[+] Scanning for authorization issues (M6)", util.OKCYAN)
-        results_dict["authorization_issues"] = m6_checker.scan_m6(source_code_dir)
-
-
         # M10: Extraneous Functionality Detection
         util.mod_log("[+] Scanning for extraneous functionality (M10)", util.OKCYAN)
 
@@ -464,23 +456,39 @@ if __name__ == "__main__":
 
         util.mod_log("[+] Extracting all insecure connections ", util.OKCYAN)
         all_file_path = obj.get_all_file_paths(extracted_apk_path)
-        result = obj.extract_insecure_request_protocol(all_file_path)
-        print(result)
-        if isinstance(result, list):
-            results_dict["insecure_requests"] = []
 
-            for url in result:
-                results_dict["insecure_requests"].append({
-                    "title": "Insecure Communication",
-                    "severity": "High",
-                    "owasp": "M3: Insecure Communication",
-                    "path": "N/A",
-                    "description": f"Insecure protocol used: {url}",
-                    "remediation": "Use HTTPS with TLS and certificate validation"
-                })
+        # M3: Insecure Communication
+        util.mod_log("[+] Scanning for insecure communication (M3)", util.OKCYAN)
 
+        source_code_dir = os.path.join(extracted_apk_path, "sources")
+
+        m3_results = m3_checker.scan_m3(source_code_dir)
+
+        if isinstance(m3_results, list):
+            results_dict["insecure_communication"] = m3_results
         else:
-            results_dict["insecure_requests"] = []
+            results_dict["insecure_communication"] = ["No insecure communication detected."]
+
+
+
+        #old m3
+        # result = obj.extract_insecure_request_protocol(all_file_path)
+        #print(result)
+        # if isinstance(result, list):
+        #     results_dict["insecure_requests"] = []
+
+        #     for url in result:
+        #         results_dict["insecure_requests"].append({
+        #             "title": "Insecure Communication",
+        #             "severity": "High",
+        #             "owasp": "M3: Insecure Communication",
+        #             "path": "N/A",
+        #             "description": f"Insecure protocol used: {url}",
+        #             "remediation": "Use HTTPS with TLS and certificate validation"
+        #         })
+
+        # else:
+        #     results_dict["insecure_requests"] = []
 
         # Global Risk Score Calculation
         util.mod_log("[+] Calculating global risk score", util.OKCYAN)

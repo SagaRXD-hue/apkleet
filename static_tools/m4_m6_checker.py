@@ -6,17 +6,22 @@ def scan_m4_m6(source_dir):
 
     findings = []
 
+    # -------- M4: Authentication --------
     auth_patterns = {
-        "hardcoded_token": r"(token|auth|jwt|bearer)\s*=\s*\".+\"",
-        "hardcoded_password": r"(password|passwd|pwd)\s*=\s*\".+\"",
-        "shared_prefs_auth": r"SharedPreferences.*(token|auth|session)",
-        "no_auth_api": r"http[s]?://.*/(login|auth|user|account)"
+        "hardcoded_password": r"(password|passwd|pwd)\s*=\s*[\"'].*?[\"']",
+        "hardcoded_token": r"(token|auth|jwt|session)\s*=\s*[\"'].*?[\"']",
+        "login_method": r"login\s*\(",
+        "auth_manager": r"AuthManager|LoginManager|SessionManager",
+        "basic_auth": r"Authorization:\s*Basic"
     }
 
+    # -------- M6: Authorization --------
     access_patterns = {
-        "no_permission_check": r"checkCallingPermission\s*\(",
-        "exported_component": r"android:exported\s*=\s*\"true\"",
-        "weak_role_check": r"if\s*\(\s*user\.isAdmin\s*\)"
+        "is_admin_check": r"isAdmin|isRoot|isSuperUser",
+        "role_check": r"hasRole|checkRole|userRole",
+        "permission_check": r"checkPermission|hasPermission",
+        "missing_check": r"if\s*\(.*user.*\)",
+        "exported_component": r"android:exported\s*=\s*\"true\""
     }
 
 
@@ -38,7 +43,7 @@ def scan_m4_m6(source_dir):
                     content = f.read()
 
 
-                # ---- M4 Checks ----
+                # -------- M4 Detection --------
                 for key, regex in auth_regex.items():
 
                     if regex.search(content):
@@ -48,23 +53,23 @@ def scan_m4_m6(source_dir):
                             "severity": "High",
                             "owasp": "M4: Insecure Authentication",
                             "path": os.path.relpath(path, source_dir),
-                            "description": f"Detected {key} pattern",
-                            "remediation": "Avoid hardcoded credentials and use secure auth flows"
+                            "description": f"Authentication weakness detected ({key})",
+                            "remediation": "Use OAuth2, JWT with expiration, and secure auth flows"
                         })
 
 
-                # ---- M6 Checks ----
+                # -------- M6 Detection --------
                 for key, regex in access_regex.items():
 
                     if regex.search(content):
 
                         findings.append({
                             "title": "Weak Authorization Control",
-                            "severity": "High",
+                            "severity": "Medium",
                             "owasp": "M6: Insecure Authorization",
                             "path": os.path.relpath(path, source_dir),
-                            "description": f"Detected {key} pattern",
-                            "remediation": "Implement strict access control checks"
+                            "description": f"Authorization weakness detected ({key})",
+                            "remediation": "Enforce server-side role and permission checks"
                         })
 
 
