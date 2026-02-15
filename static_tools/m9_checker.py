@@ -29,7 +29,7 @@ def scan_m9(source_dir):
 
 
     for root, _, files in os.walk(source_dir):
-
+        print(f"Scanning {root}...")
         for file in files:
 
             if not file.endswith((".java", ".kt", ".smali", ".xml")):
