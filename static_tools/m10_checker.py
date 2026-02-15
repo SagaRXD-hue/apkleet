@@ -111,14 +111,14 @@ def scan_m10(source_dir, manifest_path):
                 if re.search(ep, data):
 
                     findings.append({
-                        "title": "Development Endpoint Found",
-                        "endpoint": ep,
-                        "severity": "Medium",
+                        "title": "Extraneous Functionality",
+                        "severity": "Low",
                         "owasp": "M10: Extraneous Functionality",
-                        "path": os.path.relpath(path, source_dir),
-                        "description": "Development/test endpoint detected",
-                        "remediation": "Remove dev endpoints from production"
+                        "path": path,
+                        "description": "Debug/test/backdoor code detected",
+                        "remediation": "Remove development and test code from production"
                     })
+
 
     print(f"[*] Extraneous functionality findings: {len(findings)}")
     unique = []

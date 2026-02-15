@@ -76,13 +76,14 @@ def scan_m8(source_dir):
     if not protection_found:
 
         findings.append({
-            "title": "No Anti-Tampering Protection",
-            "severity": "High",
+            "title": "Missing Anti-Tampering Protection",
+            "severity": "Medium",
             "owasp": "M8: Code Tampering",
-            "path": "All Source",
-            "description": "No root/debugger/hooking detection found",
+            "path": path,
+            "description": "No anti-debug/root/tamper protection detected",
             "remediation": "Implement root, debugger, and integrity checks"
         })
+
 
     print(f"[*] Anti-tampering findings: {len(findings)}")
     unique = []

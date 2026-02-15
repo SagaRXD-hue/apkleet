@@ -75,13 +75,14 @@ class SensitiveInfoExtractor(object):
                         )
 
                         secret_info = {
-                            "type": stype,
-                            "ioc": ioc_and_type[1],
+                            "title": "Hardcoded Secret",
+                            "severity": "High",
+                            "owasp": "M2: Insecure Data Storage",
                             "path": real_relative_path,
-                            "severity": severity,
-                            "owasp": owasp,
-                            "remediation": fix
+                            "description": f"Hardcoded sensitive value: {ioc_and_type[0]}",
+                            "remediation": "Store secrets securely using Android Keystore"
                         }
+
 
                         ####
                         all_sensitive_info_list.append(secret_info)

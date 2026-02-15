@@ -68,13 +68,13 @@ def scan_crypto(source_dir):
 
                     findings.append({
                         "title": "Weak Cryptography",
-                        "algorithm": algo,
-                        "severity": "Medium" if algo == "SHA1" else "High",
+                        "severity": "High" if algo == "MD5" or algo == "ECB" else "Medium",
                         "owasp": "M5: Insufficient Cryptography",
-                        "path": os.path.relpath(path, source_dir),
+                        "path": path,
                         "description": f"Insecure crypto algorithm detected: {algo}",
                         "remediation": "Use AES-GCM / SHA-256 / SHA-3"
                     })
+
     print(f"[*] Weak crypto findings: {len(findings)}")
 
     unique = []

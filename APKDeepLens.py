@@ -397,7 +397,18 @@ if __name__ == "__main__":
         result = obj.extract_insecure_request_protocol(all_file_path)
         print(result)
         if isinstance(result, list):
-            results_dict["insecure_requests"] = result
+            results_dict["insecure_requests"] = []
+
+            for url in result:
+                results_dict["insecure_requests"].append({
+                    "title": "Insecure Communication",
+                    "severity": "High",
+                    "owasp": "M3: Insecure Communication",
+                    "path": "N/A",
+                    "description": f"Insecure protocol used: {url}",
+                    "remediation": "Use HTTPS with TLS and certificate validation"
+                })
+
         else:
             results_dict["insecure_requests"] = []
 
